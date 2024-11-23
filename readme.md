@@ -65,25 +65,36 @@ python manage.py startapp viewer
 - [x] genre
   - [x] id
   - [x] name
-- [ ] country
-  - [ ] id
-  - [ ] name
+- [x] country
+  - [x] id
+  - [x] name
+- [ ] creator
+  - [x] id
+  - [x] first_name
+  - [x] last_name
+  - [x] date_of_birth
+  - [x] date_of_death
+  - [x] nationality -> country
+  - [x] biography
+  - [ ] awards (n:m -> award)
+  - [ ] movies_actor (n:m -> movie)
+  - [ ] movies_director (n:m -> movie)
 - [ ] movie
-  - [ ] id
-  - [ ] title_orig
-  - [ ] title_cz
-  - [ ] year
-  - [ ] length (min)
+  - [x] id
+  - [x] title_orig
+  - [x] title_cz
+  - [x] year
+  - [x] length (min)
   - [ ] novel_id -> novel
   - [ ] productions (n:m -> production_company)
-  - [ ] directors (n:m -> creator)
-  - [ ] actors (n:m -> creator)
-  - [ ] countries (n:m -> country)
-  - [ ] genres (n:m -> genre)
+  - [x] directors (n:m -> creator)
+  - [x] actors (n:m -> creator)
+  - [x] countries (n:m -> country)
+  - [x] genres (n:m -> genre)
   - [ ] rating
   - [ ] medias (n:m -> media)
   - [ ] awards (n:m -> award)
-  - [ ] description
+  - [x] description
   - [ ] reviews -> review
 - [ ] review
   - [ ] id
@@ -106,17 +117,6 @@ python manage.py startapp viewer
   - [ ] id
   - [ ] title
   - [ ] author -> creator
-- [ ] creator
-  - [ ] id
-  - [ ] first_name
-  - [ ] last_name
-  - [ ] date_of_birth
-  - [ ] date_of_death
-  - [ ] nationality -> country
-  - [ ] biography
-  - [ ] awards (n:m -> award)
-  - [ ] movies_actor (n:m -> movie)
-  - [ ] movies_director (n:m -> movie)
 - [ ] user
   - [ ] id
   - [ ] username
@@ -147,6 +147,27 @@ python manage.py migrate
 > [!WARNING]  
 > Databázový soubor není součástí repozitáře, což znamená, že může dojít k situaci, kdy v nějaké
 > branch či commit nebude zdrojový kód odpovídat aktuálnímu schématu v databázi.
+
+## DUMP/LOAD databáze (export/import) s UTF znaky
+Nainstalujeme rozšíření:
+```bash
+pip install django-dump-load-utf8
+```
+
+Přidáme `'django_dump_load_utf8'` do `INSTALLED_APS` v souboru `settings.py`.
+
+Export (DUMP):
+```bash
+python manage.py dumpdatautf8 viewer --output ./files/fixtures.json
+```
+
+Import (LOAD):
+```bash
+python manage.py loaddatautf8 ./files/fixtures.json
+```
+
+> [!WARNING]
+> Data se do databáze nahrají i se svým id, tedy dojde k přepisu již existujících záznamů.
 
 # Finální projekt - rady
 
