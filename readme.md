@@ -52,9 +52,9 @@ python manage.py startapp viewer
 
 ## Funkcionalita
 
-- [x] seznam všech filmů (movies)
+- [x] seznam všech filmů (viewer/movies)
 - [x] informace o filmu (viewer/movie-detail)
-- [ ] informace o režisérech/hercích
+- [x] informace o režisérech/hercích (viewer/creator-details)
 - [ ] vkládání/editace/mazání filmu, režiséra, herce,...
 - [ ] hodnocení filmu
 - [ ] filtrování filmů na základě žánru, roku, herce, země...
